@@ -45,6 +45,7 @@
               [ngClass]="{'is-invalid':((submitted || f.email.touched) && f.email.errors)}">
               <div *ngIf="((submitted || f.email.touched) && f.email.errors)" class="invalid-feedback">
                   <div *ngIf="f.email.errors.required">Email Required.</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
               </div>
           </div>
           <!-- Password -->
@@ -55,6 +56,7 @@
                   [ngClass]="{'is-invalid':((submitted || f.password.touched) && f.password.errors)}">
                   <div *ngIf="((submitted || f.password.touched) && f.password.errors)" class="invalid-feedback">
                       <div *ngIf="f.password.errors.required">Password Required.</div>
+                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters.</div>
                   </div>
               </div>
               <div class="form-group col">
@@ -63,15 +65,16 @@
                   [ngClass]="{'is-invalid':((submitted || f.confirmPassword.touched) && f.confirmPassword.errors)}">
                   <div *ngIf="((submitted || f.confirmPassword.touched) && f.confirmPassword.errors)" class="invalid-feedback">
                       <div *ngIf="f.confirmPassword.errors.required">ConfirmPassword Required</div>
+                      <div *ngIf="f.confirmPassword.errors.mustMatch">Password Must Match </div>
                   </div>
               </div>
           </div>
 
           <div class="form-group form-check">
-              <input type="checkbox" formControlName="acceptTerms" 
+              <input type="checkbox" id="acceptTerms" formControlName="acceptTerms" 
                [ngClass]="{'is-invalid':submitted && f.acceptTerms.errors}">
-               <label>Accept Terms and Condtion</label>
-               <div *ngIf="submitted && f.acceptTerms.errors">
+               <label for="acceptTerms"  class="form-check-label">Accept Terms and Condtion</label>
+               <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback" >
                    <div *ngIf="f.acceptTerms.errors">
                        Accept Terms Condtion Must Select.
                    </div>
